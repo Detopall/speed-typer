@@ -1,0 +1,58 @@
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	overflow: hidden;
+	background-color: blue;
+	font-size: 2rem;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
+}
+
+
+.container {
+	background-color: darkorange;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	width: 80vw;
+	max-width: 90%;
+}
+
+.timer {
+	position: absolute;
+	top: 5rem;
+	color: yellow;
+	font-size: 3rem;
+	font-weight: bold;
+}
+
+.quote-display {
+	margin-bottom: 2rem;
+	text-align: center;
+}
+
+.quote-input {
+	background-color: transparent;
+	border: 0.3rem solid black;
+	outline: none;
+	resize: none;
+	width: 99%;
+	height: 8rem;
+	margin: auto;
+	font-size: 2rem;
+	border-radius: 0.5rem;
+}
+
+.quote-input:focus {
+	border-color: black;
+}
+
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
+	text-decoration: line-through;
+}
