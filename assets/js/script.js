@@ -17,7 +17,7 @@ function displayAvgSpeed(){
 	const avgSpeedLocalStorage = localStorage.getItem("avgSpeed");
 	const avgSpeed = document.querySelector("#avg-speed");
 	if (avgSpeedLocalStorage !== null){
-		avgSpeed.insertAdjacentHTML("beforebegin", `<p>${Math.trunc(avgSpeedLocalStorage)} words/seconds<\p>`);
+		avgSpeed.insertAdjacentHTML("beforebegin", `<p>${Math.trunc(avgSpeedLocalStorage)} W/M<\p>`);
 	} else {
 		avgSpeed.insertAdjacentHTML("beforebegin", `<p>no current average yet<\p>`);
 	}
@@ -86,7 +86,7 @@ function startTimer(){
 	timer.innerText = "0";
 	let beginningOfRun = new Date(); 
 	setInterval(() => {
-		timer.innerText = getCurrentTime(beginningOfRun)
+		timer.innerText = getCurrentTime(beginningOfRun);
 		localStorage.setItem("time", timer.innerText);
 	}, 1000);
 }
