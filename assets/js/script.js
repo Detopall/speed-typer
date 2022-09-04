@@ -3,11 +3,29 @@
 document.addEventListener("DOMContentLoaded", init);
 
 const RANDOM_API_QUOTE = "https://api.quotable.io/random";
-
+let time = localStorage.getItem("time");
+let quote = null;
 
 function init(){
 	document.addEventListener("input", changeColor);
+	checkTime();
+	displayAvgSpeed();
 	renderNewQuote();
+}
+
+function displayAvgSpeed(){
+	const avgSpeedLocalStorage = localStorage.getItem("avgSpeed");
+	const avgSpeed = document.querySelector("#avg-speed");
+	if (avgSpeedLocalStorage !== null){
+		avgSpeed.insertAdjacentHTML("beforebegin", `<p>${avgSpeedLocalStorage} words/seconds<\p>`);
+	} else {
+		avgSpeed.insertAdjacentHTML("beforebegin", `<p>no current average yet<\p>`);
+	}
+}
+
+function checkTime(){
+	if (time !== null) return;
+	localStorage.setItem("time", 0);
 }
 
 function getRandomQuote(){
@@ -17,7 +35,7 @@ function getRandomQuote(){
 }
 
 async function renderNewQuote(){
-	const quote = await getRandomQuote();
+	quote = await getRandomQuote();
 	const quoteArea = document.querySelector(".quote-display");
 	const container = document.querySelector(".container");
 	quoteArea.innerHTML = "";
@@ -57,7 +75,10 @@ function changeColor(e){
 			correct = false;
 		}
 	});
-	if (correct) location.reload();
+	if (correct) {
+		localStorage.setItem("avgSpeed", countWords(quote)/(localStorage.getItem("time")/60));
+		location.reload();
+	}
 }
 
 function startTimer(){
@@ -66,6 +87,7 @@ function startTimer(){
 	let beginningOfRun = new Date(); 
 	setInterval(() => {
 		timer.innerText = getCurrentTime(beginningOfRun)
+		localStorage.setItem("time", timer.innerText);
 	}, 1000);
 }
 
