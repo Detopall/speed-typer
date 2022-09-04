@@ -19,9 +19,10 @@ function getRandomQuote(){
 async function renderNewQuote(){
 	const quote = await getRandomQuote();
 	const quoteArea = document.querySelector(".quote-display");
-	const quoteInput = document.querySelector(".quote-input");
+	const container = document.querySelector(".container");
 	quoteArea.innerHTML = "";
 	quoteArea.insertAdjacentHTML("beforeend", quote);
+	container.insertAdjacentHTML("beforeend", `<p>words: ${countWords(quote)}<\p>`);
 	displayQuote(quote, quoteArea);
 	startTimer();
 }
@@ -71,4 +72,14 @@ function startTimer(){
 function getCurrentTime(beginningOfRun){
 	return Math.floor((new Date() - beginningOfRun) / 1000)
 	
+}
+
+function countWords(quote){ //Regex to check for invalid words
+	let s = quote;
+	s = s.replace (/\r\n?|\n/g, ' ')
+		.replace (/ {2,}/g, ' ')
+		.replace (/^ /, '')
+		.replace (/ $/, '');
+	let q = s.split (' ');
+	return q.length;
 }
