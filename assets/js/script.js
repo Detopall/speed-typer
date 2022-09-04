@@ -17,7 +17,7 @@ function displayAvgSpeed(){
 	const avgSpeedLocalStorage = localStorage.getItem("avgSpeed");
 	const avgSpeed = document.querySelector("#avg-speed");
 	if (avgSpeedLocalStorage !== null){
-		avgSpeed.insertAdjacentHTML("beforebegin", `<p>${avgSpeedLocalStorage} words/seconds<\p>`);
+		avgSpeed.insertAdjacentHTML("beforebegin", `<p>${Math.trunc(avgSpeedLocalStorage)} words/seconds<\p>`);
 	} else {
 		avgSpeed.insertAdjacentHTML("beforebegin", `<p>no current average yet<\p>`);
 	}
